@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+
+body{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, #c38bcf, #3a4452);
+}
+
+.calculator{
+    display: grid;
+    place-items: center;
+    height: 60vh;
+    margin: 0 auto;
+    width: 260px;
+    border: 1px solid #ad8bb4;
+    padding: 20px;
+    border-radius: 10px;
+    background: transparent;
+    
+}
+input{
+    height: 30px;
+    width: 250px;
+    background: transparent;
+    text-align: right;
+    color: #ad8bb4;
+}
+.results{
+    color: beige;
+}
+button{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 10px;
+    color: #1a151b;
+
+}
+h1{
+    text-align: center;
+    color: #c38bcf;
+}
+</style>
+<body>
+    <h1>Calculator</h1>
+    <div class="calculator">
+    <input type="text" id="result" class="results" disabled />
+    <div>
+      <button  class="button operator" onclick="ac()"> AC </button>
+      <button class="button operator" onclick="del()">DEL</button>
+      <button class="button operator" onclick="percent()">%</button>
+      <button class="button operator" onclick="div()">/</button>
+    </div>
+    <div>
+      <button class="button" onclick="appendNumber (7)">7</button>
+      <button class="button" onclick="appendNumber (8)">8</button>
+      <button class="button" onclick="appendNumber (9)">9</button>
+      <button class="button operator" onclick="mult()">*</button>
+    </div>
+    <div>
+      <button class="button" onclick="appendNumber (4)">4</button>
+      <button class="button" onclick="appendNumber (5)">5</button>
+      <button class="button" onclick="appendNumber (6)">6</button>
+      <button class="button operator" onclick="sub()">-</button>
+    </div>
+    <div>
+      <button class="button" onclick="appendNumber (1)">1</button>
+      <button class="button" onclick="appendNumber (2)">2</button>
+      <button class="button" onclick="appendNumber (3)">3</button>
+      <button class="button operator" onclick="add()">+</button>
+    </div>
+
+    <div>
+      <button class="button" onclick="twoz()">00</button>
+      <button class="button" onclick="appendNumber (0)">0</button>
+      <button class="button" onclick="appendNumber ('.')">.</button>
+      <button class="button equalBtn" onclick="equal()">=</button>
+    </div>
+  </div>
+</div>
+ <script>
+    let currentInput = "";
+    let currentoperator = "";
+
+    function appendNumber(number) {
+        currentInput += number;
+        document.getElementById("result").value = currentInput;
+    }
+    function equal(){
+        const result = eval(currentInput);
+        document.getElementById("result").value = result;
+        currentInput = result.toString();
+        currentoperator = "";
+
+    }
+    function ac(){
+        currentoperator = "";
+        currentInput = "";
+        document.getElementById("result").value = "";
+    }
+    function del(){
+    currentInput = currentInput.substring(0, currentInput.length-1);
+    document.getElementById("result").value = currentInput;
+    }
+    function twoz(){
+        currentInput += "00";
+        document.getElementById("result").value = currentInput;
+    }
+<!--operators-->
+    function div(){
+        currentoperator = "/";
+        currentInput += currentoperator;
+        document.getElementById("result").value = currentInput;
+    }
+    function mult(){
+        currentoperator = "*";
+        currentInput += currentoperator;
+        document.getElementById("result").value = currentInput;
+    }
+    function sub(){
+        currentoperator = "-";
+        currentInput += currentoperator;
+        document.getElementById("result").value = currentInput;
+    }
+    function add(){
+        currentoperator = "+";
+        currentInput += currentoperator;
+        document.getElementById("result").value = currentInput;
+    }
+    function percent(){
+    currentInput = currentInput / 100;
+    document.getElementById("result").value = currentInput;
+    }
+
+ </script>
+</body>
+</html>
